@@ -11,92 +11,132 @@
 <body>
     <div class="containerMae">
         <h2 class="title">CONVERTION'S MACHINE</h2>
-        <div class="containerFilhos"> <!-- Container principal que guarda o container da esquerda(Inputs e botão) e da direita(Resposta) -->
+        <div class="containerFilhos">
+            <!-- Container principal que guarda o container da esquerda(Inputs e botão) e da direita(Resposta) -->
             <div class="containerFilho1"> <!-- Container da esquerda, contendo Inputs e botão -->
 
                 <div class="conteudo">
                     <span style="font-size: 17px;">Informe um número</span>
-                    <input type="number" id="input_quantidadeSilos" placeholder="Digite o valor desejado">
+                    <input type="number" id="input_valorDesejado" placeholder="Digite o valor desejado">
                 </div>
 
                 <div class="conteudo">
                     <span style="font-size: 17px;">Selecione a base para a conversão</span>
                     <select id="select_baseConversao">
-                        <option value="">Binário</option>
-                        <option value="">Octal</option>
-                        <option value="">Hexadecimal</option>
-                        <option value="">Decinal</option>
+                        <option value="binario">Binário</option>
+                        <option value="decimal">Decinal</option>
+                        <option value="octal">Octal</option>
+                        <option value="hexadecimal">Hexadecimal</option>
                     </select>
                 </div>
 
                 <span style="font-size: 17px;">Selecione as bases nas quais gostaria de ver a conversão:</span>
                 <div class="conteudo">
-                    <input style="margin-top: 10px;" class="cubinho" onclick="aparecer_octal()" type="checkbox">Octal
+                    <input style="margin-top: 10px;" id="convertBinario" onclick="aparecer_octal()" type="checkbox">
+                    <label for="convertBinario">Binário</label>
                     <br>
-                    <input class="cubinho" onclick="aparecer_hexa()" type="checkbox">Hexadecimal
+                    <input id="convertDecimal" onclick="aparecer_hexa()" type="checkbox">
+                    <label for="convertDecimal">Decimal</label>
                     <br>
-                    <input class="cubinho" onclick="aparecer_bin()" type="checkbox">Binário
+                    <input id="convertOctal" onclick="aparecer_bin()" type="checkbox">
+                    <label for="convertOctal">Octal</label>
                     <br>
-                    <input class="cubinho" onclick="aparecer_bin()" type="checkbox">Binário
+                    <input id="convertHexadecimal" onclick="aparecer_bin()" type="checkbox">
+                    <label for="convertHexadecimal">Hexadecimal</label>
                     <br>
-                    <p id="btn"><button onclick="Calcular()" class="button">CALCULAR PREJUÍZO</button></p>
+                    <p id="btn"><button onclick="Converter()" class="button">CONVERTER</button></p>
                 </div>
             </div>
             <div class="containerFilho2">
-                <!-- Container da direita, contém a imagem até que o cliente clique no botão, ao clicar, a imagem é oculta e aparece a resposta -->
-                <img src="assets/img/desenho.png" id="imagem"> <!-- Imagem antes do cliente clicar no botão -->
+                <!-- Container da direita, contém a imagem até que o usuário clique no botão, ao clicar, a imagem é oculta e aparece a resposta -->
+                <img src="Binary2.png" id="imagem"> <!-- Imagem antes do usuário clicar no botão -->
                 <div id="show"></div> <!-- div que será puxada pelo innerHTML, para que apareça a resposta -->
-        
             </div>
         </div>
     </div>
-    
+
 
     <!-- Div do Pop Up -->
     <div id="myPopUp" class="modal"> <!-- modal é a classe para Pop Up-->
         <div class="containerPopUp">
             <span class="close">&times;</span>
-            <p>Este é um pop-up que aparece quando a página é carregada.</p>
+            <p>Olá, Bem Vindo(a) a Convertion´s Machine!😄
+                <br><br>
+               Converta seus dados de forma mais simples e moderna!  
+            </p>
         </div>
-    </div>x
     </div>
 </body>
 
 </html>
 <script>
-    function Calcular() {
-        let qtdToneladas = Number(input_capacidadeSilo.value) //variavel da  primeira input(capacidade do silos em toneladas).
-        let qtdSilos = Number(input_quantidadeSilos.value) //variavel da segunda input (quantidade de silos).
-        let ValorSacaSoja = Number(input_valorPorSacaSoja.value) //variavel da terceira input (valor por saca de soja).
+    function Converter() {
+        let inputValue = document.getElementById('input_valorDesejado').value;
+        let inputBase = document.getElementById('select_baseConversao').value;
+    
+        let checkBin = convertBinario.checked
+        let checkDec = convertDecimal.checked
+        let checkOct = convertOctal.checked
+        let checkHex = convertHexadecimal.checked
 
-        // 15% (0.15) equivale a média de soja perdida
-        let toneladasPerdidas = (qtdSilos * qtdToneladas) * 0.15
+        if (inputValue.trim() === '') {
+        alert('Por favor, preencha os campos.');
+        return;
+        }
+        else if(checkBin == false && checkDec == false  && checkOct == false  && checkHex == false){
+            alert ("Por favor, selecione uma ou mais bases em que deseja visualizar o resultado.")
+                return true; // faz com que a imagem não desapareça após o alert
+        }
 
-        //Transforma toneladas em quilogramas (1 tonelada = 1000 kg) e divide pelo peso de uma saca de soja (60 unidade médida).
-        let qtdPerdaSacas = (toneladasPerdidas * 1000) / 60
+        if (!validarEntrada(inputValue, inputBase)) {
+            alert('Por favor, insira um número válido para a base selecionada.');
+            return;
+        }
+    
+        let decimalValue = parseInt(inputValue, inputBase === 'hexadecimal' ? 16 : inputBase === 'octal' ? 8 : inputBase === 'binario' ? 2 : 10);
+        let outputHTML = '';
 
-        //Valor do quanto é perdido 
-        let precoPerdido = ValorSacaSoja * qtdPerdaSacas
+        if (document.getElementById('convertDecimal').checked) {
+            document.getElementById('show').style.display = 'block';
+            outputHTML += `<p>Decimal: ${decimalValue}</p>`;
+        } 
+        if (document.getElementById('convertHexadecimal').checked) {
+            document.getElementById('show').style.display = 'block';
+            outputHTML += `<p>Hexadecimal: ${decimalValue.toString(16).toUpperCase()}</p>`;
+        }
+        if (document.getElementById('convertOctal').checked) {
+            document.getElementById('show').style.display = 'block';
+            outputHTML += `<p>Octal: ${decimalValue.toString(8)}</p>`;
+        }
+        if (document.getElementById('convertBinario').checked) {
+            document.getElementById('show').style.display = 'block';
+            outputHTML += `<p>Binário: ${decimalValue.toString(2)}</p>`;
+        }
+        show.innerHTML = outputHTML;
+          
 
-        //Formata o preço perdido para uma string no formato monetário brasileiro.
-        let precoFormatado = precoPerdido.toLocaleString('pt-BR');
+        function validarEntrada(inputValue, inputBase) {
 
-        //"Math.round" Arredonda o resultado da divisão entre precoPerdido e ValorSacaSoja para o valor mais próximo. 
-        //(Por exemplo, se o resultado da divisão for 3.4, ele será arredondado para 3, e se for 3.6, será arredondado para 4)
-        let qtdPerdaSacasArredondado = Math.round(precoPerdido / ValorSacaSoja);
+            var validChars = '';
 
-        //Condição que diz "se a imagem estiver escondida(hidden), deve aparecer a resposta". 
-        if (imagem.hidden = true) {
-            show.innerHTML =
-                `
-            <span style = "color: #77BD1F">A média de perda de toneladas de soja devido à umidade é estimada em <b class = "result" style = "color: white">${toneladasPerdidas}</b> toneladas
-            <br><br>
-            O que equivale a uma quantidade de <b class = "result">${qtdPerdaSacasArredondado}</b> sacas de soja.
-            <br><br>
-            Representando um prejuízo significativo, calculado em aproximadamente <b class = "result">R$${precoFormatado}</b>, <b class = "result">15%</b> da lucro total. 
-            <br><br>
-            Recomendamos o uso de nossos sensores especializados, projetados para monitorar e controlar eficazmente a umidade e a temperatura do ar dentro de seus silos. Essa tecnologia pode ajudar a reduzir tais perdas e otimizar a gestão de seus estoques agrícolas.</span>
-        `
+            if (inputBase === 'decimal') {
+                validChars = '0123456789';
+            } else if (inputBase === 'hexadecimal') {
+                validChars = '0123456789ABCDEFabcdef';
+            } else if (inputBase === 'octal') {
+                validChars = '01234567';
+            } else if (inputBase === 'binario') {
+                validChars = '01';
+            }
+
+            for (var i = 0; i < inputValue.length; i++) {
+                if (validChars.indexOf(inputValue[i]) === -1) {
+                    return false;
+                }
+            }
+            if (imagem.hidden = true) {
+                return true;
+            }
         }
 
     }

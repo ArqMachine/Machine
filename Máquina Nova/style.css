@@ -1,8 +1,6 @@
 /*
-#01493A Verde escuro
-#498C58 Verde Claro
-#ffDE84 Cor Soja
-#77BD1F Cor verde(igual o logo)
+#36615f Verde (Mais escuro)
+#77BD1F Cor verde(Mais Claro)
 */
 
 /* Toda a página fica com margem = 0, e com a fonte estilo poppins */
@@ -55,8 +53,7 @@ body {
 
 /* Container geral, contém os outros 2 containers(esquerdo e direito) */
 .containerFilhos {
-    /* background-color: transparent; */
-    background-color: #77BD1F;
+    background-color: transparent; 
     border-radius: 10px;  /* Arredonda a borda em 15px */
     padding: 20px; /* Distãncia da bordao conteudo dentro */
     width: 700px;
@@ -68,18 +65,14 @@ body {
 .containerFilho1 {
     border-radius: 10px;
     padding: 10px;
-    width: 940px;
-    background-color: #e10808;
+    min-width: 400px; /* Definindo uma largura mínima */
 }
 
 /* (container direito) Container onde aparece a foto(antes de clicar no botão) e a resposta(após clicar no botão)*/
 .containerFilho2 {
-    background-color: blue;
-    border-radius: 10px;
     padding: 20px; /* Distãncia da bordao conteudo dentro */
-    width: 340px;
+    min-width: 340px; /* Definindo uma largura mínima */
     display: flex;
-    flex-direction: end;
     align-items: center;
     justify-content: center;
 }
@@ -102,11 +95,11 @@ body {
 /* Detalhes sobre a estilização do botão */
 .button {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #77BD1F;
+    background-color: #36615f;
     color: white;
     padding: 10px;    /* Distãncia da borda do botão para o que esta escrito nele */
     border-radius: 15px;  /* Arredonda a borda em 15px */
-    margin-left: 70px;  /* Cria uma margem do lado esqeurdo de 70px */
+    margin-left: 120px;  /* Cria uma margem do lado esqeurdo de 70px */
     font-weight: 900; /* Torna a grossura da fonte em bold 900 */
 }
 
@@ -136,6 +129,16 @@ body {
     background-color: transparent;
     color: gray;
     border-color: #36615f;
+}
+
+#output {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #D0D3D4;
+    border: 1px solid #63666A;
+    text-align: left;
+    display: none;
 }
 
 
