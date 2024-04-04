@@ -17,6 +17,7 @@ input{
 
 /* Detalhes sobre o corpo da página */
 body {
+    background-color: #36615f;
     background-image: url(fundo.png);
     background-position: center;  /* Mantem a imagem de fundo no centro da tela */
     background-size: 100%;  /* Mantém o tamanho da tela em 100% */
@@ -95,12 +96,19 @@ body {
 /* Detalhes sobre a estilização do botão */
 .button {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #36615f;
+    background-color: #15672e;
     color: white;
     padding: 10px;    /* Distãncia da borda do botão para o que esta escrito nele */
     border-radius: 15px;  /* Arredonda a borda em 15px */
     margin-left: 120px;  /* Cria uma margem do lado esqeurdo de 70px */
+    margin-top: 30px;
     font-weight: 900; /* Torna a grossura da fonte em bold 900 */
+
+}
+
+.button:hover{
+    background-color: #36615f;
+    transition: all 0.3s;
 }
 
 /* Detalhes sobre as dimensões da imagem no containerFilho2 */
@@ -156,10 +164,10 @@ body {
 }
 
 .containerPopUp {
-    background-color: #fefefe;
+    background-color: #d2d0d0;
     margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #77BD1F;
+    padding: 50px;
+    border: 1px solid #36615f;
     width: 80%;
     max-width: 450px;
     border-radius: 5px;
@@ -174,7 +182,8 @@ body {
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: #36615f;
     text-decoration: none;
     cursor: pointer;
 }
+

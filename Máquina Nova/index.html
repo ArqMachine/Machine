@@ -10,7 +10,7 @@
 
 <body>
     <div class="containerMae">
-        <h2 class="title">CONVERTION'S MACHINE</h2>
+        <h2 class="title">CONVERTION'S <span style="color: #15672e; font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: 600;">MACHINE</span></h2>
         <div class="containerFilhos">
             <!-- Container principal que guarda o container da esquerda(Inputs e botão) e da direita(Resposta) -->
             <div class="containerFilho1"> <!-- Container da esquerda, contendo Inputs e botão -->
@@ -23,8 +23,8 @@
                 <div class="conteudo">
                     <span style="font-size: 17px;">Selecione a base para a conversão</span>
                     <select id="select_baseConversao">
-                        <option value="binario">Binário</option>
-                        <option value="decimal">Decinal</option>
+                        <option value="binario">Binário</option> 
+                        <option value="decimal">Decimal</option>
                         <option value="octal">Octal</option>
                         <option value="hexadecimal">Hexadecimal</option>
                     </select>
@@ -60,9 +60,10 @@
     <div id="myPopUp" class="modal"> <!-- modal é a classe para Pop Up-->
         <div class="containerPopUp">
             <span class="close">&times;</span>
-            <p>Olá, Bem Vindo(a) a Convertion´s Machine!😄
-                <br><br>
-               Converta seus dados de forma mais simples e moderna!  
+            <p> <h2>Olá, Bem Vindo(a) a Convertion´s Machine!😄</h2>
+                <br>
+                <span style="font-family: Verdana, Geneva, Tahoma, sans-serif;"> Você já se encontrou atolado(a) em uma montanha de dados, tentando encontrar uma maneira de transformá-los em algo útil e compreensível? </span> <br><br>
+                 <h4>💡 Na Convertion's Machine, simplificamos esse processo para você de forma mais simples e moderna!</h4>
             </p>
         </div>
     </div>
@@ -98,19 +99,19 @@
 
         if (document.getElementById('convertDecimal').checked) {
             document.getElementById('show').style.display = 'block';
-            outputHTML += `<p>Decimal: ${decimalValue}</p>`;
+            outputHTML += `<p style="font-family: Verdana, Geneva, Tahoma, sans-serif; padding: 15px; background-color: #36615f; margin: 10px; border-radius: 10px; font-size: 15px;">Decimal: ${decimalValue}</p>`;
         } 
         if (document.getElementById('convertHexadecimal').checked) {
             document.getElementById('show').style.display = 'block';
-            outputHTML += `<p>Hexadecimal: ${decimalValue.toString(16).toUpperCase()}</p>`;
+            outputHTML += `<p style="font-family: Verdana, Geneva, Tahoma, sans-serif; padding: 15px; background-color: #15672e; margin: 10px; border-radius: 10px; font-size: 15px;">Hexadecimal: ${decimalValue.toString(16).toUpperCase()}</p>`;
         }
         if (document.getElementById('convertOctal').checked) {
             document.getElementById('show').style.display = 'block';
-            outputHTML += `<p>Octal: ${decimalValue.toString(8)}</p>`;
+            outputHTML += `<p style="font-family: Verdana, Geneva, Tahoma, sans-serif; padding: 15px; background-color: #36615f; margin: 10px; border-radius: 10px; font-size: 15px;">Octal: ${decimalValue.toString(8)}</p>`;
         }
         if (document.getElementById('convertBinario').checked) {
             document.getElementById('show').style.display = 'block';
-            outputHTML += `<p>Binário: ${decimalValue.toString(2)}</p>`;
+            outputHTML += `<p style="font-family: Verdana, Geneva, Tahoma, sans-serif; padding: 15px; background-color: #15672e; margin: 10px; border-radius: 10px; font-size: 15px;">Binário: ${decimalValue.toString(2)}</p>`;
         }
         show.innerHTML = outputHTML;
           
